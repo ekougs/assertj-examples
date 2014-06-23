@@ -4,6 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.bisam.assertjex.PersonInstances.*;
 import static org.assertj.core.api.Assertions.extractProperty;
 import static org.assertj.core.api.Assertions.tuple;
 
@@ -13,10 +14,10 @@ public class ListsTest {
   @Before
   public void setUp() {
     yellowTeam = new Persons();
-    yellowTeam.add(new Person("Pascal", "Ekouaghe", 27))
-      .add(new Person("Guillaume", "Michel", 35))
-      .add(new Person("Fouad", "Hellou", 29))
-      .add(new Person("Fatima", "Amach", 31));
+    yellowTeam.add(PASCAL)
+      .add(GUILLAUME)
+      .add(FOUAD)
+      .add(FATIMA);
   }
 
   @Test
@@ -50,6 +51,6 @@ public class ListsTest {
 
   @Test
   public void testAgeWithStrongTypingExtraction() throws Exception {
-    Assertions.assertThat(extractProperty("age", Integer.class).from(yellowTeam)).containsOnly(31, 35, 29, 27);
+    Assertions.assertThat(extractProperty("age", Integer.class).from(yellowTeam)).containsOnly(25, 35, 29, 27);
   }
 }
