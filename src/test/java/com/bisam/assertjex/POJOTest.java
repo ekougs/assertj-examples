@@ -1,5 +1,6 @@
 package com.bisam.assertjex;
 
+import org.assertj.core.api.Condition;
 import org.junit.Test;
 
 import java.util.Comparator;
@@ -7,13 +8,20 @@ import java.util.Comparator;
 import static com.bisam.assertjex.PersonInstances.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ComparisonTest {
+public class POJOTest {
 
   @Test
   public void testSurnamesUsingComparator() throws Exception {
     Comparator<Person> surnameFirstLetterComparator = new SurnameFirstLetterComparator();
     assertThat(GUILLAUME).usingComparator(surnameFirstLetterComparator).isNotEqualTo(PASCAL);
     assertThat(FATIMA).usingComparator(surnameFirstLetterComparator).isEqualTo(FOUAD);
+  }
+
+  @Test
+  public void testTeamMembership() throws Exception {
+    YellowTeamMemberCondition yellowTeamMember = new YellowTeamMemberCondition();
+    assertThat(SOLENE).isNot(yellowTeamMember);
+    assertThat(FATIMA).is(yellowTeamMember);
   }
 
   private static class SurnameFirstLetterComparator implements Comparator<Person> {
@@ -23,6 +31,13 @@ public class ComparisonTest {
 
     private String getSurnameFirstLetter(Person person1) {
       return new Character(person1.getSurname().charAt(0)).toString();
+    }
+  }
+
+  private static class YellowTeamMemberCondition extends Condition<Person> {
+    @Override
+    public boolean matches(Person person) {
+      return YELLOW_TEAM.contains(person);
     }
   }
 }

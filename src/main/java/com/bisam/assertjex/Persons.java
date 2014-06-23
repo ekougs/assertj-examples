@@ -12,6 +12,10 @@ public class Persons implements Iterable<Person> {
     return this;
   }
 
+  boolean contains(Person person) {
+    return persons.contains(person);
+  }
+
   public Iterator<Person> iterator() {
     return persons.iterator();
   }
