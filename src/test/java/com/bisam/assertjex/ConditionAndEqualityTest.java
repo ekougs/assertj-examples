@@ -8,7 +8,7 @@ import java.util.Comparator;
 import static com.bisam.assertjex.PersonInstances.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class POJOTest {
+public class ConditionAndEqualityTest {
 
   @Test
   public void testSurnamesUsingComparator() throws Exception {
@@ -22,6 +22,12 @@ public class POJOTest {
     YellowTeamMemberCondition yellowTeamMember = new YellowTeamMemberCondition();
     assertThat(SOLENE).isNot(yellowTeamMember);
     assertThat(FATIMA).is(yellowTeamMember);
+  }
+
+  @Test
+  public void testYellowTeamAreAllAdults() throws Exception {
+    GrownUpCondition allGrownUp = new GrownUpCondition();
+    assertThat(YELLOW_TEAM).are(allGrownUp);
   }
 
   private static class SurnameFirstLetterComparator implements Comparator<Person> {
@@ -38,6 +44,13 @@ public class POJOTest {
     @Override
     public boolean matches(Person person) {
       return YELLOW_TEAM.contains(person);
+    }
+  }
+
+  private static class GrownUpCondition extends Condition<Person> {
+    @Override
+    public boolean matches(Person person) {
+      return person.getAge() >= 18;
     }
   }
 }

@@ -7,7 +7,7 @@ import static com.bisam.assertjex.PersonInstances.YELLOW_TEAM;
 import static org.assertj.core.api.Assertions.extractProperty;
 import static org.assertj.core.api.Assertions.tuple;
 
-public class ListsTest {
+public class ExtractionTest {
 
   @Test
   public void testSurnames() throws Exception {
