@@ -1,22 +1,22 @@
 package com.bisam.assertjex;
 
 public class Person {
-  private final String name;
   private final String surname;
+  private final String firstName;
   private final int age;
 
-  public Person(String surname, String name, int age) {
-    this.name = name;
+  public Person(String firstName, String surname, int age) {
     this.surname = surname;
+    this.firstName = firstName;
     this.age = age;
-  }
-
-  public String getName() {
-    return name;
   }
 
   public String getSurname() {
     return surname;
+  }
+
+  public String getFirstName() {
+    return firstName;
   }
 
   public int getAge() {
@@ -37,10 +37,10 @@ public class Person {
     if (age != person.age) {
       return false;
     }
-    if (name != null ? !name.equals(person.name) : person.name != null) {
+    if (surname != null ? !surname.equals(person.surname) : person.surname != null) {
       return false;
     }
-    if (surname != null ? !surname.equals(person.surname) : person.surname != null) {
+    if (firstName != null ? !firstName.equals(person.firstName) : person.firstName != null) {
       return false;
     }
 
@@ -49,8 +49,8 @@ public class Person {
 
   @Override
   public int hashCode() {
-    int result = name != null ? name.hashCode() : 0;
-    result = 31 * result + (surname != null ? surname.hashCode() : 0);
+    int result = surname != null ? surname.hashCode() : 0;
+    result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
     result = 31 * result + age;
     return result;
   }
@@ -58,8 +58,8 @@ public class Person {
   @Override
   public String toString() {
     return "Person{" +
-           "name='" + name + '\'' +
-           ", surname='" + surname + '\'' +
+           "name='" + surname + '\'' +
+           ", surname='" + firstName + '\'' +
            ", age=" + age +
            '}';
   }

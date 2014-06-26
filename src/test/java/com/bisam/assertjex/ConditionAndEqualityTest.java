@@ -36,7 +36,7 @@ public class ConditionAndEqualityTest {
     }
 
     private String getSurnameFirstLetter(Person person1) {
-      return new Character(person1.getSurname().charAt(0)).toString();
+      return new Character(person1.getFirstName().charAt(0)).toString();
     }
   }
 
